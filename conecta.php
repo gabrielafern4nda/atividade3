@@ -1,17 +1,11 @@
 <?php
-// Verifica se a requisição foi feita por método POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recebe os dados enviados pelo AJAX
-    $matricula = $_POST["matricula"];
-    $nome = $_POST["nome"];
-
-    // Simulação de inserção em um array
-    $aluno = array(
-        "matricula" => $matricula,
-        "nome" => $nome
-    );
-
-    // Retorna a resposta em formato JSON
-    echo json_encode($aluno);
+// DEFININDO O FUSO HORÁRIO:
+date_default_timezone_set('America/Sao_Paulo');
+    
+// CONEXÃO COM A BASE DE DADOS: verifique sempre o dbname
+try{
+    $pdo = new PDO("mysql:dbname=atividade4;host=localhost;charset=utf8","root","");
+} catch(PDOException $erro) {
+    echo("ERRO NA CONEXÃO: <br>".$erro->getMessage());
 }
 ?>
